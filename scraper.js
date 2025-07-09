@@ -19,4 +19,4 @@ async function scrapeMangaImages(pageUrl) {
     return imageUrls;
 }
 
-export default { scrapeMangaImages };
+export { scrapeMangaImages };

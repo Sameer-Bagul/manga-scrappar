@@ -2,6 +2,7 @@ import { launch } from 'puppeteer';
 import { promises, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import fetch from 'node-fetch';
+import { createMangaPDF } from './lib/pdf-generator.js';
 
 async function downloadImage(url, filepath) {
   const res = await fetch(url);
@@ -114,6 +115,17 @@ async function scrapeManga(startUrl) {
   console.log(`Scraping complete. Total chapters downloaded: ${chaptersDownloaded}`);
 
   await browser.close();
+
+  // Generate PDF after scraping is complete
+  if (chaptersDownloaded > 0) {
+    console.log('Creating PDF from downloaded chapters...');
+    try {
+      const pdfPath = await createMangaPDF(mangaFolder, `${mangaName}.pdf`);
+      console.log(`✅ PDF created successfully: ${pdfPath}`);
+    } catch (err) {
+      console.error(`❌ Error creating PDF: ${err.message}`);
+    }
+  }
 }
 
 // Example usage:

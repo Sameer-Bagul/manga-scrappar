@@ -1,13 +1,25 @@
 {
   "name": "manga-scrappar",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "A robust Node.js application that scrapes manga images and converts them into high-quality PDFs with intelligent error handling",
+  "main": "generate-manga-pdf.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "generate": "node generate-manga-pdf.js",
+    "diagnose": "node diagnose-images.js",
+    "scrape": "node puppeteer-scrape.js",
+    "test": "echo \"Run 'npm run generate' to create PDF\" && exit 0"
   },
-  "keywords": [],
+  "keywords": [
+    "manga",
+    "pdf",
+    "scraper",
+    "image-processing",
+    "sharp",
+    "puppeteer",
+    "web-scraping"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -18,8 +30,9 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "node-fetch": "^2.7.0",
+    "pdfkit": "^0.15.2",
     "puppeteer": "^24.10.0",
-    "readline-sync": "^1.4.10"
-  },
-  "description": ""
+    "readline-sync": "^1.4.10",
+    "sharp": "^0.34.2"
+  }
 }

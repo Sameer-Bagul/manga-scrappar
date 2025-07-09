@@ -1,6 +1,11 @@
 import { mkdirSync, createWriteStream } from 'fs';
-import { join, extname } from 'path';
+import { join, extname, dirname } from 'path';
 import { get } from 'axios';
+import { fileURLToPath } from 'url';
+
+// Get __dirname equivalent in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 async function downloadImages(urls, folderName = 'chapter-images') {
     const dir = join(__dirname, 'downloads', folderName);
@@ -21,4 +26,4 @@ async function downloadImages(urls, folderName = 'chapter-images') {
     }
 }
 
-export default { downloadImages };
+export { downloadImages };
